@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@keypom/core": "^1.0.2",
+    "express": "^4.18.2",
+    "near-api-js": "^2.1.4",
+    "twitter-api-sdk": "^1.2.1"
+  }
+}
