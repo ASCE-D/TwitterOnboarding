@@ -67,7 +67,25 @@ app.get("/callback", async function (req, res) {
         if (typeof code !== "string")
             return res.status(500).send("Code isn't a string");
         await authClient.requestAccessToken(code);
+
+              // Fetch Twitter user profile information
+              const { data } = await client.users.findMyUser({
+                "user.fields": ["profile_image_url", "description", "name"],
+            });
+    
+            // Pass user data to the KeyPom drop function
+            await simpleDropKeypom({
+                twitterProfile: {
+                    username: data.name,
+                    bio: data.description,
+                    profileImageUrl: data.profile_image_url,
+                },
+            });
+    
+
         res.redirect("/me");
+
+
     } catch (error) {
         console.log(error);
     }

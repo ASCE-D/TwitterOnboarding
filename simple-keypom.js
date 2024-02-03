@@ -6,7 +6,7 @@ const path = require("path");
 const homedir = require("os").homedir();
 
 
-async function simpleDropKeypom(){
+async function simpleDropKeypom(userArgs){
 	// Initiate connection to the NEAR blockchain.
 	const network = "testnet"
 	const CREDENTIALS_DIR = ".near-credentials";
@@ -41,6 +41,7 @@ async function simpleDropKeypom(){
 	    account: fundingAccount,
 	    numKeys: 1,
 	    depositPerUseNEAR: "1",
+		args: userArgs,
 	});
 	pubKeys = keys.publicKeys
 	
@@ -57,5 +58,12 @@ async function simpleDropKeypom(){
 	console.log(`Keypom Contract Explorer Link: explorer.${network}.near.org/accounts/${KEYPOM_CONTRACT}.com`)
 
 }
+const userArgs = {
+    twitterProfile: {
+        username: "twitter_username",
+        bio: "Twitter user bio",
+        profileImageUrl: "twitter_profile_image_url",
+    },
+};
 
-simpleDropKeypom()
+simpleDropKeypom(userArgs);
